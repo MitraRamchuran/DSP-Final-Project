@@ -6,11 +6,14 @@ A machine learning pipeline for Human Activity Recognition using smartphone sens
 
 ## Project Overview
 This repository contains:
-- Preprocessing scripts for MotionSense inertial sensor data
-- Implementation of traditional ML and deep learning models
-- Evaluation of hybrid architectures combining signal processing with neural networks
-- Privacy-preserving techniques for sensor data
+- **Dataset**: MotionSense (raw IMU sensor data: accelerometer, gyroscope, attitude)
+- **Model**: 1D CNN implemented in PyTorch
+- **Input Shape**: (batch_size, channels, timesteps) = (N, 6, 100)
+- **Windowing Strategy**: Fixed-size sliding windows (100 timesteps, 50% overlap)
+- **Activities**: Walk, Jog, Sit, Stand, Upstairs, Downstairs (subset selectable)
+- **Evaluation**: Accuracy, Confusion Matrix, F1 Score
 
+  
 ## Dataset
 The project uses the **[MotionSense Dataset](https://github.com/mmalekzadeh/motion-sense)**:
 - Collected from 24 participants using iPhone 6s
@@ -18,14 +21,15 @@ The project uses the **[MotionSense Dataset](https://github.com/mmalekzadeh/moti
 - 50Hz sampling rate from accelerometer and gyroscope
 - Device placement: Front pocket (real-world conditions)
 
-- **Reference**:  
+>**Reference**:  
 > Malekzadeh et al. (2019). ["Mobile Sensor Data Anonymization"](https://dl.acm.org/doi/10.1145/3302505.3310068). *Proceedings of IoTDI*.
-- **Model**: 1D CNN implemented in PyTorch
-- **Input Shape**: (batch_size, channels, timesteps) = (N, 6, 100)
-- **Windowing Strategy**: Fixed-size sliding windows (100 timesteps, 50% overlap)
-- **Activities**: Walk, Jog, Sit, Stand, Upstairs, Downstairs (subset selectable)
-- **Evaluation**: Accuracy, Confusion Matrix, F1 Score
 
+
+## Results
+
+| Model | Accuracy | Latency | Parameters |
+|-------|----------|---------|------------|
+| 1D CNN | 93.7% | 42ms | 1.2M |
 
 
 ## Model Architecture
@@ -43,8 +47,3 @@ Dense(128) + ReLU + Dropout(0.5)
 ↓
 Dense(6) + Softmax
 
-
-## Results
-| Model | Accuracy | Latency | Parameters |
-|-------|----------|---------|------------|
-| 1D CNN | 93.7% | 42ms | 1.2M |
