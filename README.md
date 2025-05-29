@@ -18,8 +18,17 @@ The project uses the **[MotionSense Dataset](https://github.com/mmalekzadeh/moti
 - 50Hz sampling rate from accelerometer and gyroscope
 - Device placement: Front pocket (real-world conditions)
 
+- **Reference**:  
+> Malekzadeh et al. (2019). ["Mobile Sensor Data Anonymization"](https://dl.acm.org/doi/10.1145/3302505.3310068). *Proceedings of IoTDI*.
+- **Model**: 1D CNN implemented in PyTorch
+- **Input Shape**: (batch_size, channels, timesteps) = (N, 6, 100)
+- **Windowing Strategy**: Fixed-size sliding windows (100 timesteps, 50% overlap)
+- **Activities**: Walk, Jog, Sit, Stand, Upstairs, Downstairs (subset selectable)
+- **Evaluation**: Accuracy, Confusion Matrix, F1 Score
 
-## 🧠 Model Architecture
+
+
+## Model Architecture
 
 ```text
 Input (100 x 6)
@@ -35,16 +44,7 @@ Dense(128) + ReLU + Dropout(0.5)
 Dense(6) + Softmax
 
 
-- **Reference**:  
-> Malekzadeh et al. (2019). ["Mobile Sensor Data Anonymization"](https://dl.acm.org/doi/10.1145/3302505.3310068). *Proceedings of IoTDI*.
-- **Model**: 1D CNN implemented in PyTorch
-- **Input Shape**: (batch_size, channels, timesteps) = (N, 6, 100)
-- **Windowing Strategy**: Fixed-size sliding windows (100 timesteps, 50% overlap)
-- **Activities**: Walk, Jog, Sit, Stand, Upstairs, Downstairs (subset selectable)
-- **Evaluation**: Accuracy, Confusion Matrix, F1 Score
-
 ## Results
 | Model | Accuracy | Latency | Parameters |
 |-------|----------|---------|------------|
 | 1D CNN | 93.7% | 42ms | 1.2M |
-
