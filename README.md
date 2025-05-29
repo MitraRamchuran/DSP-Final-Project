@@ -29,7 +29,7 @@ The project uses the **[MotionSense Dataset](https://github.com/mmalekzadeh/moti
 
 | Model | Accuracy | Latency | Parameters |
 |-------|----------|---------|------------|
-| 1D CNN | 93.7% | 42ms | 1.2M |
+| 1D CNN | 93.31% | 42ms | 1.2M |
 
 ---
 ## Model Architecture
